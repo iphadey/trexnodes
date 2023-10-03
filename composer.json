@@ -1,0 +1,23 @@
+{
+    "name": "iphadey/trexnodes",
+    "type": "library",
+    "description": "A Laravel package for Trexnodes service",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fadhil Halim",
+            "email": "iphadey@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Iphadey\\Trexnodes\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^7.4|^8.0|^8.1|^8.2",
+        "guzzlehttp/guzzle": "*",
+        "illuminate/support": "*",
+        "illuminate/database": "*"
+    }
+}
