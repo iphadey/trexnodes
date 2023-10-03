@@ -51,10 +51,10 @@ class TrexnodesGateway
     public function setHeader($data = [])
     {
         $default = [
-            'Content-Type' => 'application/json',
-            'Accept'       => 'application/json',
-            'Connection'   => 'keep-alive',
-            'token'        => "Bearer $this->clientToken"
+            'Content-Type'  => 'application/json',
+            'Accept'        => 'application/json',
+            'Connection'    => 'keep-alive',
+            'Authorization' => "Bearer $this->clientToken"
         ];
 
         $this->header = $default + $data;
@@ -66,10 +66,10 @@ class TrexnodesGateway
     private function apiRequest()
     {
         $this->log = TrexnodesRequestLog::create([
-            'ip'         => $this->ip,
-            'url'        => $this->endpoint,
-            'method'     => $this->method,
-            'request'    => $this->param,
+            'ip'      => $this->ip,
+            'url'     => $this->endpoint,
+            'method'  => $this->method,
+            'request' => $this->param,
         ]);
 
         $this->response = $this->clientRequest($this->method, $this->endpoint, $this->param);
