@@ -166,7 +166,7 @@ class TrexnodesGateway
 
     public function tokenListing($filter = [])
     {
-        $this->endpoint = "$this->url/api/coins";
+        $this->endpoint = "$this->url/api/tokens";
         $this->method = 'GET';
 
         return $this->setParam([
@@ -181,7 +181,7 @@ class TrexnodesGateway
 
     public function coinCreate($symbol)
     {
-        $this->endpoint = "$this->url/api/coins";
+        $this->endpoint = "$this->url/api/coins/create";
         $this->method = 'POST';
 
         return $this->setParam([
@@ -213,14 +213,38 @@ class TrexnodesGateway
         return $this->apiRequest()->getResponse();
     }
 
-    public function createAddress($coinUuid, $label = null)
+    public function addressCreate($coinUuid, $label = null)
     {
-        $this->endpoint = "$this->url/api/coins/$coinUuid";
+        $this->endpoint = "$this->url/api/addresses/create/$coinUuid";
         $this->method = 'POST';
 
         return $this->setParam([
             'label' => $label,
         ])->apiRequest()->getResponse();
+    }
+
+    public function addressListing($filter = [])
+    {
+        $this->endpoint = "$this->url/api/addresses";
+        $this->method = 'GET';
+
+        return $this->setParam([
+            'filter' => [
+                'uuid'    => $filter['uuid'] ?? null,
+                'symbol'  => $filter['symbol'] ?? null,
+                'token'   => $filter['token'] ?? null,
+                'network' => $filter['network'] ?? null,
+                'status'  => $filter['status'] ?? null,
+            ]
+        ])->apiRequest()->getResponse();
+    }
+
+    public function addressDetail($addressUuid)
+    {
+        $this->endpoint = "$this->url/api/addresses/$addressUuid";
+        $this->method = 'GET';
+
+        return $this->apiRequest()->getResponse();
     }
 
     public function transactionHistories($filter = [])
@@ -302,13 +326,34 @@ class TrexnodesGateway
 
     public function withdrawalRequest($coinUuid, $amount, $address)
     {
-        $this->endpoint = "$this->url/api/withdrawals";
+        $this->endpoint = "$this->url/api/withdrawal/request";
         $this->method = 'POST';
 
         return $this->setParam([
             'coin_uuid' => $coinUuid,
             'amount'    => $amount,
             'address'   => $address,
+        ])->apiRequest()->getResponse();
+    }
+
+    public function depositRequest($coinUuid)
+    {
+        $this->endpoint = "$this->url/api/deposit/request";
+        $this->method = 'POST';
+
+        return $this->setParam([
+            'coin_uuid' => $coinUuid,
+        ])->apiRequest()->getResponse();
+    }
+
+    public function exchangeRate($from, $to)
+    {
+        $this->endpoint = "$this->url/api/misc/exchange-rate";
+        $this->method = 'GET';
+
+        return $this->setParam([
+            'from' => $from,
+            'to'   => $to,
         ])->apiRequest()->getResponse();
     }
 }
