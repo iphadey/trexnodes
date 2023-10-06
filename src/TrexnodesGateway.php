@@ -155,6 +155,7 @@ class TrexnodesGateway
     {
         $this->endpoint = "$this->url/oauth/token";
         $this->method = 'POST';
+        $this->bodyType = 'body';
 
         return $this->setParam([
             'grant_type'    => 'client_credentials',
@@ -183,6 +184,7 @@ class TrexnodesGateway
     {
         $this->endpoint = "$this->url/api/coins/create";
         $this->method = 'POST';
+        $this->bodyType = 'body';
 
         return $this->setParam([
             'symbol' => $symbol,
@@ -217,6 +219,7 @@ class TrexnodesGateway
     {
         $this->endpoint = "$this->url/api/addresses/create/$coinUuid";
         $this->method = 'POST';
+        $this->bodyType = 'body';
 
         return $this->setParam([
             'label' => $label,
@@ -328,6 +331,7 @@ class TrexnodesGateway
     {
         $this->endpoint = "$this->url/api/withdrawal/request";
         $this->method = 'POST';
+        $this->bodyType = 'body';
 
         return $this->setParam([
             'coin_uuid' => $coinUuid,
@@ -340,6 +344,7 @@ class TrexnodesGateway
     {
         $this->endpoint = "$this->url/api/deposit/request";
         $this->method = 'POST';
+        $this->bodyType = 'body';
 
         return $this->setParam([
             'coin_uuid' => $coinUuid,
