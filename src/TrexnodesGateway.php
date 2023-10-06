@@ -48,6 +48,16 @@ class TrexnodesGateway
         return $this;
     }
 
+    public function setAccessToken($accessToken = null)
+    {
+        if ($accessToken) {
+            $this->clientToken = $accessToken;
+            config('trexnodes.client.token', $accessToken);
+        }
+
+        return $this;
+    }
+
     public function setHeader($data = [])
     {
         $default = [
