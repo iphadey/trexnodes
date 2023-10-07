@@ -30,7 +30,7 @@ class TrexnodesGateway
         $this->url = config('trexnodes.sandbox-url');
 
 
-        if (config('savvix.mode') == 'live') {
+        if (config('trexnodes.mode') == 'live') {
             $this->url = config('trexnodes.url');
         }
 
