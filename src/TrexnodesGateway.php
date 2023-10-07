@@ -128,7 +128,7 @@ class TrexnodesGateway
         }
 
         if (!in_array($statusCode, $this->successCodes)) {
-            $this->failed = $response->message ?? 'undefined';
+            $this->failed = $response['message'] ?? 'undefined';
 
             if ($this->log) {
                 $this->log->update([
