@@ -23,7 +23,7 @@ class TrexnodesGateway
     public $header;
     public $bodyType = 'query';
 
-    private $successCodes = [200];
+    private $successCodes = [200, 201];
 
     public function __construct()
     {
